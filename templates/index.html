@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><a href="{{ url_for('add') }}">+ Add application</a></p>
+
+{% if applications %}
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Location</th>
+        <th>Opened</th>
+        <th>Closing</th>
+        <th>Stage</th>
+        <th>Link</th>
+        <th>Notes</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in applications %}
+    <tr>
+        <td>{{ item.company }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.location }}</td>
+        <td>{{ item.dateopened }}</td>
+        <td>{{ item.dateclosing }}</td>
+        <td>{{ item.stages }}</td>
+        <td>
+            {% if item.link and item.link.startswith("http") %}
+            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Open</a>
+            {% endif %}
+        </td>
+        <td>{{ item.notes }}</td>
+        <td>
+            <a href="{{ url_for('edit', application_id=item.id) }}">Edit</a>
+            <form action="{{ url_for('delete', application_id=item.id) }}" method="post"
+                  style="display:inline"
+                  onsubmit="return confirm('Delete this application?');">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No applications yet. Add your first one.</p>
+{% endif %}
+{% endblock %}
+

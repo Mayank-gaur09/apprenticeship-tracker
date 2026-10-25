@@ -1,0 +1,19 @@
+body {
+    background-color: #f5f6f8;
+}
+
+.table-wrap {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    font-size: 0.9rem;
+}
+
+.notes {
+    max-width: 220px;
+    overflow-wrap: anywhere;
+}

@@ -1,0 +1,60 @@
+{% extends"base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h2>{{ title }} </h2>
+
+<form method = "post">
+    <p>
+        <label>Company<br>
+            <input type ="text" name="company" required
+            value=""{{ application['company'] if application else '' }}">
+        </label>
+    </p>
+    <p>
+        <label>Role<br>
+        <input type="text" name="role" required
+               value="{{ application['role'] if application else '' }}"></label>
+    </p>
+    <p>
+        <label>Location<br>
+        <input type="text" name="location"
+               value="{{ application['location'] if application else '' }}"></label>
+    </p>
+    <p>
+        <label>Date opened<br>
+        <input type="date" name="dateopened"
+               value="{{ application['dateopened'] if application else '' }}"></label>
+    </p>
+    <p>
+        <label>Closing date<br>
+        <input type="date" name="dateclosing"
+               value="{{ application['dateclosing'] if application else '' }}"></label>
+    </p>
+    <p>
+        <label>Link to vacancy<br>
+        <input type="url" name="link" size="50"
+               value="{{ application['link'] if application else '' }}"></label>
+    </p>
+    <p>
+        <label>Stage<br>
+        <select name="stages">
+            {% for stage in stages %}
+            <option value="{{ stage }}"
+                {% if application and application['stages'] == stage %}selected{% endif %}>
+                {{ stage }}
+            </option>
+            {% endfor %}
+        </select></label>
+    </p>
+    <p>
+        <label>Notes<br>
+        <textarea name="notes" rows="4" cols="50">{{ application['notes'] if application else '' }}</textarea></label>
+    </p>
+    <button type="submit">Save</button>
+    <a href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}
+    </p>
+</form>
